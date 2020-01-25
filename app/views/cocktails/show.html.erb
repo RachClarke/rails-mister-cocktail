@@ -6,16 +6,14 @@
 
 <div style="text-align: center; margin-top: 24px;">
 <ul style="width: 600px; margin: 0 auto; list-style: none">
-  <% @cocktail.ingredients.each do |ingredient| %>
+  <% @cocktail.doses.each do |dose| %>
     <li>
-      <%= ingredient.name %> |
-      <% ingredient.doses.each do |dose| %>
+      <%= dose.ingredient.name %> |
         <%= dose.description %> |
         <%= link_to "Remove this ingredient",
                 cocktail_dose_path(@cocktail, dose),
                 method: :delete,
                 data: {confirm: 'Are you sure?'} %>
-        <% end %>
     <% end %>
   </li>
 </ul>
