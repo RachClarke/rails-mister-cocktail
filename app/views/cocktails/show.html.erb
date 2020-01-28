@@ -15,11 +15,19 @@
                 method: :delete,
                 data: {confirm: 'Are you sure?'} %>
     <% end %>
+    <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill if @cocktail.photo.attached? %>
   </li>
 </ul>
 
 <br>
 <%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
+<br>
+
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Upload your photo!" %>
+<% end %>
+
 <br>
 <%= link_to "Back to cocktails", cocktails_path %>
 
