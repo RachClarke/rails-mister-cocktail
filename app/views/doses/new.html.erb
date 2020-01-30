@@ -1,7 +1,13 @@
-<h1>Add a new dose to your <%= @cocktail.name %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1572346411800-b4d741f3e84f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80);">
+  <div class="container">
+    <h1>Add a dose to your <%= @cocktail.name %></h1>
+  </div>
+</div>
+
 
 <%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.association :ingredient, collection: Ingredient.order(:name) %>
   <%= f.input :description %>
   <%= f.submit "Add the dose!" %>
 <% end %>
+
