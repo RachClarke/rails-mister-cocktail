@@ -1,0 +1,28 @@
+.ingredients-table-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.ingredients-table-header {
+  display: flex;
+
+}
+
+.ingredients-table {
+  width: 30vw;
+  margin: 0 auto;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  vertical-align: bottom;
+  color: $dark-pink;
+  text-align: left;
+
+  a {
+    text-align: right;
+  }
+}

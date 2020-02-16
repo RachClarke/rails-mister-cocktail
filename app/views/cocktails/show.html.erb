@@ -1,31 +1,48 @@
 <% if @cocktail.photo.attached? %>
-  <div class="banner" style='background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(" <%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>");'>
+  <div class="banner" style='background-image: linear-gradient(rgba(0,0,0,0.1), #1A1A1D), url(" <%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>");'>
 <% else %>
-    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1496318447583-f524534e9ce1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2605&q=80');">
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1), #1A1A1D), url('https://images.unsplash.com/photo-1514447084304-976bcf033264?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
 <% end %>
   <div class="container">
     <h1><%= @cocktail.name %></h1>
-    <%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
-    <br>
-    <%= link_to "Back to cocktails", cocktails_path %>
+    <div class="banner-buttons">
+      <%= link_to "Back to cocktails", cocktails_path, :class => "button"%>
+    </div>
   </div>
 </div>
 
-<div style="text-align: center; margin-top: 24px;">
+<div  class="ingredients-table-container" >
 
-<ul style="width: 600px; margin: 0 auto; list-style: none">
+<div class="ingredients-table-header">
+
+
+</div>
+
+
+
+<table class="ingredients-table">
+  <tr>
+    <th>
+      <h3>Ingregients</h3>
+    </th>
+    <th>
+      <%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
+    </th>
+  </tr>
   <% @cocktail.doses.each do |dose| %>
-    <li>
-      <%= dose.ingredient.name %> |
-        <%= dose.description %> |
-        <%= link_to "Remove this ingredient",
-                cocktail_dose_path(@cocktail, dose),
-                method: :delete,
-                data: {confirm: 'Are you sure?'} %>
-    <% end %>
-
-  </li>
-</ul>
+  <tr>
+    <td>
+     <%= dose.description%> of <%= dose.ingredient.name %>
+    </td>
+    <td>
+      <%= link_to "Remove",
+              cocktail_dose_path(@cocktail, dose),
+              method: :delete,
+              data: {confirm: 'Are you sure?'} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
 
 </div>
 
